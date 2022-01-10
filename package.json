@@ -1,0 +1,51 @@
+{
+  "name": "stadia-electron",
+  "appId": "com.github.gitawego.${name}",
+  "productName": "Google Stadia",
+  "version": "0.0.1",
+  "description": "A Linux desktop web app for Google Stadia",
+  "main": "scripts/main.js",
+  "scripts": {
+    "start": "NODE_ENV=development electron .",
+    "build": "electron-builder --publish never"
+  },
+  "build": {
+    "linux": {
+      "target": [
+        "AppImage"
+      ],
+      "category": "Games",
+      "artifactName": "${name}_${version}_linux.${ext}",
+      "icon": "./scripts/assets/icon.png"
+    },
+    "snap": {
+      "plugs": [
+        "default",
+        "audio-record",
+        "joystick"
+      ]
+    },
+    "extraFiles": [
+      "com.github.gitawego.${name}.desktop",
+      {
+        "from": "./StadiaEnhanced/extension",
+        "to": "./resources/StadiaEnhanced/extension",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ]
+  },
+  "repository": "https://github.com/gitawego/stadia-electron",
+  "keywords": [
+    "Electron",
+    "stadia",
+    "google"
+  ],
+  "author": "Hongbo LU <gitawego@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^17.0.0-beta.1",
+    "electron-builder": "^22.14.12"
+  }
+}

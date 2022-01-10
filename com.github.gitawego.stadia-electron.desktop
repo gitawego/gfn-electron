@@ -1,0 +1,11 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Stadia
+Comment=Stream games using the Google Stadia
+Type=Application
+Exec=/opt/stadia-electron/stadia-electron
+Icon=stadia
+StartupWMClass=stadia
+Categories=Network;Game;
+Keywords=Game;Streaming;Google;Stadia
+Keywords[ro]=Game;Streaming;Joc;Transmisie;Transmisiune;Google;Stadia
