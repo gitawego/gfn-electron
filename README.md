@@ -9,7 +9,7 @@ Please follow [How To Enable Hardware Accelerated Video Decode](https://www.linu
 
 Basically you will have to install follow dependencies, most of them should be already installed by the OS.
 
-### for For Intel Gen 7 and earlier hardware:
+### For Intel Gen 7 and earlier hardware:
 
 ```bash
 sudo apt install i965-va-driver-shaders libva-drm2 libva-x11-2
