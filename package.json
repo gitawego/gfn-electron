@@ -2,7 +2,7 @@
   "name": "stadia-electron",
   "appId": "com.github.gitawego.${name}",
   "productName": "Google Stadia",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "A Linux desktop web app for Google Stadia",
   "main": "scripts/main.js",
   "scripts": {
