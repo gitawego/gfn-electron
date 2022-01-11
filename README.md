@@ -28,10 +28,10 @@ sudo apt install intel-media-va-driver-non-free libva-drm2 libva-x11-2
 sudo apt install mesa-va-drivers libva-drm2 libva-x11-2
 ```
 
-### Also install libva-drm2 and libva-x11-2
+### Also install additional drivers
 
 ```bash
-sudo apt install libva-drm2 libva-x11-2
+sudo apt install libva-glx2 libva-x11-2 chromium-codecs-ffmpeg-extra libgl1-mesa-glx
 ```
 
 

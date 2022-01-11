@@ -2,13 +2,13 @@
 // It has the same sandbox as a Chrome extension.
 
 window.addEventListener("DOMContentLoaded", () => {
-  const replaceText = (selector, text) => {
+  const replaceText = (selector: string, text: string) => {
     const element = document.getElementById(selector);
     if (element) element.innerText = text;
   };
 
   for (const type of ["chrome", "node", "electron"]) {
-    replaceText(`${type}-version`, process.versions[type]);
+    replaceText(`${type}-version`, process.versions[type] || "");
   }
 });
 
@@ -33,3 +33,5 @@ window.addEventListener("DOMContentLoaded", () => {
     };
   }, 10_000);
 })();
+
+export {};
