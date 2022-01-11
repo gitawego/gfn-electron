@@ -21,7 +21,7 @@
         "deb"
       ],
       "category": "Games",
-      "artifactName": "${name}_${version}_linux.${ext}",
+      "artifactName": "${name}_${version}_${platform}_${arch}.${ext}",
       "icon": "./assets/icon.png"
     },
     "snap": {
