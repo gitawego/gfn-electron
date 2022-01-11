@@ -39,3 +39,9 @@ sudo apt install libva-glx2 libva-x11-2 chromium-codecs-ffmpeg-extra libgl1-mesa
 - added required chromium flags for Hardware video decoder
 - included extension: StadiaEnhanced
 - support both stadia and geforce now
+
+## FAQ
+
+### Why only linux ?
+
+Because browser hardware video decoder (ex: play in 4k mode) doesn't work well on Linux, in other OS, we can just play directement in a chromium based browsers.
