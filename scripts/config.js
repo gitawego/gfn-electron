@@ -47,7 +47,7 @@ const currentGameId = userConfig('gameId') || 'stadia';
 
 const config = {
   gameId: currentGameId,
-  gameUrl: games[currentGameId]
+  gameUrl: games[currentGameId],
 };
 
 const template = [

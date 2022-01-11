@@ -63,7 +63,15 @@ app.on("browser-window-created", function (e, window) {
       BrowserWindow.getAllWindows()[0].setFullScreen(true);
     }
   });
+  window.on("page-title-updated", function (e, title) {
+    if (title.includes("on GeForce NOW")) {
+      window.setFullScreen(true);
+      isFullScreen = true;
+    }
+  });
 });
+
+
 
 app.on("will-quit", () => {
   globalShortcut.unregisterAll();
