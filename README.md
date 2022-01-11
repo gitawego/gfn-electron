@@ -1,9 +1,8 @@
-# Stadia Electron for linux
+# Stadia/Geforce Now Electron for linux
 
-Electron based stadia application, adapted based on [geforcenow-electron](https://github.com/hmlendea/geforcenow-electron).
+Electron based Stadia and Geforce Now application, inspired by [geforcenow-electron](https://github.com/hmlendea/geforcenow-electron).
 
-
-## Requirement 
+## Requirement
 
 Please follow [How To Enable Hardware Accelerated Video Decode](https://www.linuxuprising.com/2021/01/how-to-enable-hardware-accelerated.html) to install required dependencies in linux
 
@@ -23,7 +22,6 @@ sudo apt install intel-media-va-driver-non-free libva-drm2 libva-x11-2
 
 ### For Nouveau and AMD drivers
 
-
 ```bash
 sudo apt install mesa-va-drivers libva-drm2 libva-x11-2
 ```
@@ -33,7 +31,6 @@ sudo apt install mesa-va-drivers libva-drm2 libva-x11-2
 ```bash
 sudo apt install libva-glx2 libva-x11-2 chromium-codecs-ffmpeg-extra libgl1-mesa-glx
 ```
-
 
 ## Features
 
