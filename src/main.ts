@@ -1,38 +1,43 @@
-const { app, globalShortcut, BrowserWindow, Menu } = require("electron");
-const { menuItems, switches, getResourcePath, setConfig, getConfig } = require('./config');
-const path = require("path");
+import { app, globalShortcut, BrowserWindow, Menu } from "electron";
+import {
+  menuItems,
+  switches,
+  getResourcePath,
+  setConfig,
+  getConfig,
+} from "./config";
+import * as path from "path";
 
 let isFullScreen = false;
-
+let mainWindow: BrowserWindow;
 for (const flag of switches) {
   app.commandLine.appendSwitch.apply(app.commandLine, flag);
 }
 
-
 async function createWindow() {
-  const mainWindow = new BrowserWindow({
+  mainWindow = new BrowserWindow({
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
       contextIsolation: false,
-      nativeWindowOpen: false
+      nativeWindowOpen: false,
     },
-    icon: path.resolve(__dirname, './assets/icon.png')
+    icon: getResourcePath("assets/icon.png"),
   });
-  setConfig('mainWindow', mainWindow);
-  const session = mainWindow.webContents.session
-  await session.loadExtension(getResourcePath('StadiaEnhanced/extension'));
+  setConfig("mainWindow", mainWindow);
+  const session = mainWindow.webContents.session;
+  await session.loadExtension(getResourcePath("StadiaEnhanced/extension"));
   let ua = mainWindow.webContents.userAgent;
-  ua = ua.replace(/stadia-electron\/[0-9\.-]*/, '');
-  ua = ua.replace(/Electron\/*/, '');
+  ua = ua.replace(/stadia-electron\/[0-9\.-]*/, "");
+  ua = ua.replace(/Electron\/*/, "");
   mainWindow.webContents.userAgent = ua;
 
-  mainWindow.once('ready-to-show', () => {
+  mainWindow.once("ready-to-show", () => {
     const menu = Menu.buildFromTemplate(menuItems);
     Menu.setApplicationMenu(menu);
     mainWindow.show();
-  })
+  });
 
-  mainWindow.loadURL(getConfig('gameUrl'));
+  mainWindow.loadURL(getConfig("gameUrl") as string);
 }
 
 app.whenReady().then(() => {
@@ -58,7 +63,7 @@ app.whenReady().then(() => {
 
 app.on("browser-window-created", function (e, window) {
   window.setMenu(null);
-  window.on("leave-full-screen", function (e, win) {
+  window.on("leave-full-screen", function () {
     if (isFullScreen) {
       BrowserWindow.getAllWindows()[0].setFullScreen(true);
     }
@@ -70,8 +75,6 @@ app.on("browser-window-created", function (e, window) {
     }
   });
 });
-
-
 
 app.on("will-quit", () => {
   globalShortcut.unregisterAll();
