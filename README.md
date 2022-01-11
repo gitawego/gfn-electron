@@ -36,3 +36,4 @@ sudo apt install libva-glx2 libva-x11-2 chromium-codecs-ffmpeg-extra libgl1-mesa
 
 - added required chromium flags for Hardware video decoder
 - included extension: StadiaEnhanced
+- support both stadia and geforce now
