@@ -1,5 +1,5 @@
 const { app, globalShortcut, BrowserWindow, Menu } = require("electron");
-const { menuItems, switches, getResourcePath } = require('./config');
+const { menuItems, switches, getResourcePath, setConfig, getConfig } = require('./config');
 const path = require("path");
 
 let isFullScreen = false;
@@ -18,6 +18,7 @@ async function createWindow() {
     },
     icon: path.resolve(__dirname, './assets/icon.png')
   });
+  setConfig('mainWindow', mainWindow);
   const session = mainWindow.webContents.session
   await session.loadExtension(getResourcePath('StadiaEnhanced/extension'));
   let ua = mainWindow.webContents.userAgent;
@@ -31,7 +32,7 @@ async function createWindow() {
     mainWindow.show();
   })
 
-  mainWindow.loadURL("https://stadia.google.com");
+  mainWindow.loadURL(getConfig('gameUrl'));
 }
 
 app.whenReady().then(() => {
