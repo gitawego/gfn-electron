@@ -7,6 +7,7 @@
   "main": "build/main.js",
   "scripts": {
     "build:tsc": "tsc",
+    "build:tsc:watch":"tsc -w",
     "build:electron": "electron-builder --publish never",
     "build":"npm run build:tsc && npm run build:electron",
     "watch": "tsc -w",

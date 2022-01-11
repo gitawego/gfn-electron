@@ -8,7 +8,6 @@ import {
 } from "./config";
 import * as path from "path";
 
-let isFullScreen = false;
 let mainWindow: BrowserWindow;
 for (const flag of switches) {
   app.commandLine.appendSwitch.apply(app.commandLine, flag);
@@ -36,7 +35,7 @@ async function createWindow() {
     Menu.setApplicationMenu(menu);
     mainWindow.show();
   });
-
+  mainWindow.maximize();
   mainWindow.loadURL(getConfig("gameUrl") as string);
 }
 
@@ -44,34 +43,22 @@ app.whenReady().then(() => {
   createWindow();
 
   app.on("activate", function () {
-    if (BrowserWindow.getAllWindows().length === 0) {
+    if (!mainWindow) {
       createWindow();
     }
   });
 
   globalShortcut.register("Super+F", () => {
-    isFullScreen = BrowserWindow.getAllWindows()[0].isFullScreen();
-    if (isFullScreen) {
-      BrowserWindow.getAllWindows()[0].setFullScreen(false);
-      isFullScreen = false;
-    } else {
-      BrowserWindow.getAllWindows()[0].setFullScreen(true);
-      isFullScreen = true;
-    }
+    const isFullScreen = mainWindow.isFullScreen();
+    mainWindow.setFullScreen(!isFullScreen);
   });
 });
 
 app.on("browser-window-created", function (e, window) {
   window.setMenu(null);
-  window.on("leave-full-screen", function () {
-    if (isFullScreen) {
-      BrowserWindow.getAllWindows()[0].setFullScreen(true);
-    }
-  });
   window.on("page-title-updated", function (e, title) {
     if (title.includes("on GeForce NOW")) {
       window.setFullScreen(true);
-      isFullScreen = true;
     }
   });
 });

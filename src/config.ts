@@ -8,6 +8,7 @@ import {
 import * as fs from "fs";
 import * as path from "path";
 import { AppConfig, GameId, Games } from "./model";
+const isMac = process.platform === "darwin";
 
 const games: Games = {
   stadia: "https://stadia.google.com",
@@ -61,27 +62,28 @@ const config: AppConfig = {
 
 export const menuItems: MenuItemConstructorOptions[] = [
   {
-    label: "Setting",
+    label: "Platform",
+    sublabel: "Choose game platform",
     submenu: [
       {
-        label: "Game Platform",
-        submenu: [
-          {
-            id: "stadia",
-            label: "Google Stadia",
-            type: "radio",
-            click: handleClick,
-            checked: currentGameId === "stadia",
-          },
-          {
-            id: "gfn",
-            label: "Geforce Now",
-            type: "radio",
-            click: handleClick,
-            checked: currentGameId === "gfn",
-          },
-        ],
+        id: "stadia",
+        label: "Google Stadia",
+        type: "radio",
+        click: handleClick,
+        checked: currentGameId === "stadia",
       },
+      {
+        id: "gfn",
+        label: "Geforce Now",
+        type: "radio",
+        click: handleClick,
+        checked: currentGameId === "gfn",
+      },
+    ],
+  },
+  {
+    label: "Setting",
+    submenu: [
       {
         label: "GPU Info",
         click: () => {
@@ -101,6 +103,10 @@ export const menuItems: MenuItemConstructorOptions[] = [
         click: () => {
           config.mainWindow?.webContents.openDevTools();
         },
+      },
+      {
+        label: "Exit",
+        role: isMac ? "close" : "quit",
       },
     ],
   },
