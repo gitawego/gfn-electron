@@ -27,7 +27,9 @@ async function createWindow() {
   await session.loadExtension(getResourcePath("StadiaEnhanced/extension"));
   let ua = mainWindow.webContents.userAgent;
   ua = ua.replace(/stadia-electron\/[0-9\.-]*/, "");
-  ua = ua.replace(/Electron\/*/, "");
+  ua = ua.replace(/StadiaElectron\/[0-9\.-]*/, "");
+  ua = ua.replace(/Electron\/.*? /i, "");
+  console.log("user agent", ua);
   mainWindow.webContents.userAgent = ua;
 
   mainWindow.once("ready-to-show", () => {
