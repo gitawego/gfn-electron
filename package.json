@@ -1,7 +1,7 @@
 {
   "name": "stadia-electron",
   "appId": "com.github.gitawego.${name}",
-  "productName": "Google Stadia",
+  "productName": "StadiaElectron",
   "version": "1.0.1",
   "description": "A Linux desktop web app for Google Stadia",
   "main": "build/main.js",
@@ -11,8 +11,8 @@
     "build:electron": "electron-builder --publish never",
     "build":"npm run build:tsc && npm run build:electron",
     "watch": "tsc -w",
-    "start": "NODE_ENV=development electron .",
-    "start:debug": "NODE_ENV=development electron --inspect=5858 ."
+    "start": "STADIA_ENV=development electron .",
+    "start:debug": "STADIA_ENV=development electron --inspect=5858 ."
   },
   "build": {
     "linux": {
@@ -22,7 +22,12 @@
       ],
       "category": "Games",
       "artifactName": "${name}_${version}_${platform}_${arch}.${ext}",
-      "icon": "./assets/icon.png"
+      "icon": "./assets/icon.png",
+      "desktop":{
+        "name":"StadiaElectron",
+        "Icon":"/opt/StadiaElectron/resources/assets/icon.png",
+        "Keywords":"Game;Streaming;Google;Stadia;Geforce;Nvidia"
+      }
     },
     "snap": {
       "plugs": [
@@ -36,7 +41,6 @@
       "package.json"
     ],
     "extraFiles": [
-      "com.github.gitawego.${name}.desktop",
       {
         "from": "./StadiaEnhanced/extension",
         "to": "./resources/StadiaEnhanced/extension",

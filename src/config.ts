@@ -131,7 +131,7 @@ export const getResourcePath = (resource: string) => {
   const appPath = app.getAppPath();
   return path.resolve(
     appPath,
-    process.env.NODE_ENV === "development" ? "./" : "../",
+    process.env.STADIA_ENV === "development" ? "./" : "../",
     resource
   );
 };
