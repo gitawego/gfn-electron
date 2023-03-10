@@ -1,8 +1,7 @@
-# Stadia/Geforce Now Electron for linux
+# Geforce Now Electron for linux
 
-Electron based Stadia and Geforce Now application, inspired by [geforcenow-electron](https://github.com/hmlendea/geforcenow-electron).
+Electron based Geforce Now application, inspired by [geforcenow-electron](https://github.com/hmlendea/geforcenow-electron).
 
-![Google Stadia](screenshot.png)
 
 ## Requirement
 
@@ -37,8 +36,6 @@ sudo apt install libva-glx2 libva-x11-2 chromium-codecs-ffmpeg-extra libgl1-mesa
 ## Features
 
 - added required chromium flags for Hardware video decoder
-- included extension: StadiaEnhanced
-- support both stadia and geforce now
 
 ## FAQ
 

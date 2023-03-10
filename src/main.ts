@@ -18,16 +18,13 @@ async function createWindow() {
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
       contextIsolation: false,
-      nativeWindowOpen: false,
+
     },
     icon: getResourcePath("assets/icon.png"),
   });
   setConfig("mainWindow", mainWindow);
-  const session = mainWindow.webContents.session;
-  await session.loadExtension(getResourcePath("StadiaEnhanced/extension"));
   let ua = mainWindow.webContents.userAgent;
-  ua = ua.replace(/stadia-electron\/[0-9\.-]*/, "");
-  ua = ua.replace(/StadiaElectron\/[0-9\.-]*/, "");
+  ua = ua.replace(/gfn-electron\/[0-9\.-]*/, "");
   ua = ua.replace(/Electron\/.*? /i, "");
   console.log("user agent", ua);
   mainWindow.webContents.userAgent = ua;

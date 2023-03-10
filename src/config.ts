@@ -11,7 +11,6 @@ import { AppConfig, GameId, Games } from "./model";
 const isMac = process.platform === "darwin";
 
 const games: Games = {
-  stadia: "https://stadia.google.com",
   gfn: "https://play.geforcenow.com",
 };
 
@@ -20,7 +19,7 @@ const handleClick = (
   browserWindow: BrowserWindow | undefined,
   event: KeyboardEvent
 ) => {
-  const gameId = (menuItem.id || "stadia") as GameId;
+  const gameId = (menuItem.id || "gfn") as GameId;
   if (config.gameId === gameId) {
     return;
   }
@@ -53,7 +52,7 @@ export const userConfig = (...args: any[]) => {
   return args[1];
 };
 
-const currentGameId = (userConfig("gameId") || "stadia") as GameId;
+const currentGameId = (userConfig("gameId") || "gfn") as GameId;
 
 const config: AppConfig = {
   gameId: currentGameId,
@@ -65,13 +64,6 @@ export const menuItems: MenuItemConstructorOptions[] = [
     label: "Platform",
     sublabel: "Choose game platform",
     submenu: [
-      {
-        id: "stadia",
-        label: "Google Stadia",
-        type: "radio",
-        click: handleClick,
-        checked: currentGameId === "stadia",
-      },
       {
         id: "gfn",
         label: "Geforce Now",
@@ -113,15 +105,16 @@ export const menuItems: MenuItemConstructorOptions[] = [
 ];
 
 export const switches: [string, (string | undefined)?][] = [
-  ["enable-features", "VaapiVideoDecoder"],
+  ["enable-features", "VaapiVideoDecoder,VaapiVideoEncoder,CanvasOopRasterization"],
+  ["disable-features","UseChromeOSDirectVideoDecoder,UseOzonePlatform"],
   ["enable-gpu-rasterization"],
   ["enable-zero-copy"],
   ["enable-accelerated-mjpeg-decode"],
   ["enable-accelerated-video"],
-  ["use-gl", "desktop"],
+  // ["use-gl", "desktop"],
   ["ignore-gpu-blacklist"],
   ["disable-gpu-driver-bug-workarounds"],
-  ["disable-features", "UseSkiaRenderer"],
+  // ["disable-features", "UseSkiaRenderer"],
   ["enable-raw-draw"],
   // ["enable-native-gpu-memory-buffers"],
   // ["enable-oop-rasterization"]
@@ -131,7 +124,7 @@ export const getResourcePath = (resource: string) => {
   const appPath = app.getAppPath();
   return path.resolve(
     appPath,
-    process.env.STADIA_ENV === "development" ? "./" : "../",
+    process.env.GFN_ENV === "development" ? "./" : "../",
     resource
   );
 };

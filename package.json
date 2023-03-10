@@ -1,9 +1,9 @@
 {
-  "name": "stadia-electron",
+  "name": "gfn-electron",
   "appId": "com.github.gitawego.${name}",
-  "productName": "StadiaElectron",
-  "version": "1.0.1",
-  "description": "A Linux desktop web app for Google Stadia",
+  "productName": "GeforceNowElectron",
+  "version": "1.1.0",
+  "description": "A Linux desktop web app for Geforce Now",
   "main": "build/main.js",
   "scripts": {
     "build:tsc": "tsc",
@@ -11,8 +11,8 @@
     "build:electron": "electron-builder --publish never",
     "build":"npm run build:tsc && npm run build:electron",
     "watch": "tsc -w",
-    "start": "STADIA_ENV=development electron .",
-    "start:debug": "STADIA_ENV=development electron --inspect=5858 ."
+    "start": "GFN_ENV=development electron .",
+    "start:debug": "GFN_ENV=development electron --inspect=5858 ."
   },
   "build": {
     "linux": {
@@ -22,11 +22,11 @@
       ],
       "category": "Games",
       "artifactName": "${name}_${version}_${platform}_${arch}.${ext}",
-      "icon": "./assets/icon.png",
+      "icon": "./assets/gfn-logo-v3.svg",
       "desktop":{
-        "name":"StadiaElectron",
-        "Icon":"/opt/StadiaElectron/resources/assets/icon.png",
-        "Keywords":"Game;Streaming;Google;Stadia;Geforce;Nvidia"
+        "name":"GeforceNowElectron",
+        "Icon":"/opt/GeforceNowElectron/resources/assets/gfn-logo-v3.svg",
+        "Keywords":"Game;Streaming;Google;Geforce;Nvidia"
       }
     },
     "snap": {
@@ -42,37 +42,31 @@
     ],
     "extraFiles": [
       {
-        "from": "./StadiaEnhanced/extension",
-        "to": "./resources/StadiaEnhanced/extension",
-        "filter": [
-          "**/*"
-        ]
-      },
-      {
         "from": "./assets",
         "to": "./resources/assets"
       }
     ]
   },
-  "repository": "https://github.com/gitawego/stadia-electron",
+  "repository": "https://github.com/gitawego/gfn-electron",
   "keywords": [
     "Electron",
-    "stadia",
-    "google"
+    "google",
+    "gfn",
+    "geforce now"
   ],
   "author": "Hongbo LU <gitawego@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.9.1",
-    "@typescript-eslint/parser": "^5.9.1",
-    "electron": "^17.0.0-beta.3",
-    "electron-builder": "^22.14.12",
-    "eslint": "^8.6.0",
-    "eslint-config-prettier": "^8.3.0",
-    "prettier": "^2.5.1",
-    "typescript": "^4.5.4"
+    "@typescript-eslint/eslint-plugin": "^5.54.1",
+    "@typescript-eslint/parser": "^5.54.1",
+    "electron": "^23.1.3",
+    "electron-builder": "^23.6.0",
+    "eslint": "^8.36.0",
+    "eslint-config-prettier": "^8.7.0",
+    "prettier": "^2.8.4",
+    "typescript": "^4.9.5"
   },
   "dependencies": {
-    "tslib": "^2.3.1"
+    "tslib": "^2.5.0"
   }
 }
